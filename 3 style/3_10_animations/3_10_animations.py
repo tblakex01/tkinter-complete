@@ -36,8 +36,8 @@ class AnimatedButton(ctk.CTkButton):
 				sorted_data = sorted(
 					image_data, 
 					key = lambda item: int(item.split('.')[0][-5:]))
-				
-				full_path_data = [path + '/' + item for item in sorted_data]
+
+				full_path_data = [f'{path}/{item}' for item in sorted_data]
 				image_paths.append(full_path_data)
 		image_paths = zip(*image_paths)
 

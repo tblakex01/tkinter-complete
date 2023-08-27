@@ -20,7 +20,7 @@ table.pack(fill = 'both', expand = True)
 
 # insert values into a table
 # table.insert(parent = '', index = 0, values = ('John', 'Doe', 'JohnDoe@email.com'))
-for i in range(100):
+for _ in range(100):
 	first = choice(first_names)
 	last = choice(last_names)
 	email = f'{first[0]}{last}@email.com'
