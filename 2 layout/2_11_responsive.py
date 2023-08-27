@@ -58,7 +58,7 @@ class App(tk.Tk):
 class SizeNotifier:
 	def __init__(self, window, size_dict):
 		self.window = window
-		self.size_dict = {key: value for key, value in sorted(size_dict.items())}
+		self.size_dict = dict(sorted(size_dict.items()))
 		self.current_min_size = None
 		self.window.bind('<Configure>', self.check_size)
 
@@ -70,18 +70,19 @@ class SizeNotifier:
 
 
 	def check_size(self, event):
-		if event.widget == self.window:
-			window_width = event.width
-			checked_size = None
+		if event.widget != self.window:
+			return
+		window_width = event.width
+		checked_size = None
 
-			for min_size in self.size_dict:
-				delta = window_width - min_size
-				if delta >= 0:
-					checked_size = min_size
+		for min_size in self.size_dict:
+			delta = window_width - min_size
+			if delta >= 0:
+				checked_size = min_size
 
-			if checked_size != self.current_min_size:
-				self.current_min_size = checked_size
-				self.size_dict[self.current_min_size]()
+		if checked_size != self.current_min_size:
+			self.current_min_size = checked_size
+			self.size_dict[self.current_min_size]()
 
 # exercise
 # create a a third layout where the widgets are next to each other (I used grid)
